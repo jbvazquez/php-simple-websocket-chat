@@ -86,7 +86,7 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
 
 ### Como correr el servidor
 * Correr `run_chat_server.bat`
-  * Ejemplo de ejecución del servidor
+  * Ejemplo de ejecución del servidor:
   ```
 	Server started
 	Listening on: 172.17.0.2:5001
@@ -94,10 +94,10 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
   ```
   
 ### Como acceder al cliente
-* Desde el navegador acceder a la URL (http://localhost/php-simple-websocket-chat/cliente/)
+* Desde el navegador acceder a la URL http://localhost/php-simple-websocket-chat/cliente/
 
 ### Obtener información de PHP
-* Desde el navegador acceder a URL (http://localhost/)
+* Desde el navegador acceder a URL http://localhost/
 
 ### Linux
 * Próximamente...
