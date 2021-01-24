@@ -87,7 +87,8 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
 ### Como correr el servidor
 * Correr `run_chat_server.bat`
   ** Ejemplo de ejecución del servidor
-  ![run_chat_server](https://github.com/jbvazquez/php-simple-websocket-chat/blob/master/docker-container/img/run_chat_server_snip.png?raw=true)
+  ![run_chat_server](https://github.com/jbvazquez/php-simple-websocket-chat/blob/docker-container/docker-container/img/run_chat_server_snip.png?raw=true)
+  
 
 ### Como acceder al cliente
 * Desde el navegador acceder a la URL (http://localhost/php-simple-websocket-chat/cliente/)
