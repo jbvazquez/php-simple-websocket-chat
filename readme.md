@@ -74,7 +74,7 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
  * Al terminal el cmd el contenedor se debe de borrar automáticamente, de no hacerlo eliminarlo desde el dashboard o usando el comando `docker container rm [container_id]`.
  * Cambiar el tamaño de cmd puede detener el servidor Apache.
 
-### Como acceder a la terminal del contender
+### Como acceder a la terminal del contenedor
 * Correr `run_container_bash.bat`
   * [docker exec](https://docs.docker.com/engine/reference/commandline/exec/)
 
