@@ -65,39 +65,36 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
  * PHP Version 7.4.14
  * Apache 2.0 Handler
 
-### Creación del contenedor
-* Correr `create_container.bat`
- * El batch file realiza el pull de la imagen de Docker Hub.
+### Creación de imagen PHP personalizada
+* Correr `build_image.bat`
+ * El batch file realiza el pull de la imagen de PHP desde el Docker Hub, instala las extensiones necesarias y la publicación de los puertos usados.
 
-### Como correr el contenedor
+### Como correr el contenedor 
 * Correr `run_container.bat`
- * Al terminal el cmd el contenedor se debe de borrar automáticamente, de no hacerlo eliminarlo desde el dashboard o usando el comando `docker container rm [container_id]`.
- * Cambiar el tamaño de cmd puede detener el servidor Apache.
+ * Al terminar la ejecución del batch file ej. `Ctrl+C`, el contenedor se debe de borrar automáticamente, de lo contrario se puede eliminar manualmente desde el dashboard o usando el comando `docker container rm [container_id]`.
+ * **Nota:** La ejecución del contenedor se realiza en modo interactivo `--interactive , -i` `--tty , -t` 
+   * Cambiar el tamaño de la ventana de comandos puede detener el servidor Apache al recibir una señal [SIGWINCH](https://stackoverflow.com/questions/48086606/docker-container-exits-when-using-it-option).
+    Ejemplo de error:
+	```
+	[mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+	```
+	La implementación de la ejecución del contenedor en segundo plano puede ser útil para este caso `--detach , -d` sin embargo, por defecto se usa el modo interactivo para depurar.
 
-### Como acceder a la terminal del contenedor
+### Como acceder a la terminal bin/bash del contenedor
 * Correr `run_container_bash.bat`
   * [docker exec](https://docs.docker.com/engine/reference/commandline/exec/)
 
 ### Como correr el servidor
 * Correr `run_chat_server.bat`
+  ** Ejemplo de ejecución del servidor
+  ![run_chat_server](https://github.com/jbvazquez/php-simple-websocket-chat/blob/master/docker-container/img/run_chat_server_snip.png?raw=true)
 
 ### Como acceder al cliente
-* Desde el navegador 
- * (http://localhost/)
- * (http://localhost/php-simple-websocket-chat/cliente/)
+* Desde el navegador acceder a la URL (http://localhost/php-simple-websocket-chat/cliente/)
 
-### Work in Progress
-**Nota:** Implementación aun en desarrollo.
-* Error actual al ejecutar `php php-simple-websocket-chat/servidor/chat.php`
-
-```
-Fatal error: Uncaught Error: Call to undefined function socket_create() in /var/www/html/php-simple-websocket-chat/servidor/PHP-Websockets-master/websockets.php:22
-Stack trace:
-#0 /var/www/html/php-simple-websocket-chat/servidor/chat.php(128): WebSocketServer->__construct('127.0.0.1', '5001')
-#1 {main}
-  thrown in /var/www/html/php-simple-websocket-chat/servidor/PHP-Websockets-master/websockets.php on line 22
-```
+### Obtener información de PHP
+* Desde el navegador acceder a URL (http://localhost/)
 
 ### Linux
-Próximamente
+Próximamente...
 
