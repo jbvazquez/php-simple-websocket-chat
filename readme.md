@@ -74,11 +74,11 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
  * Al terminar la ejecución del batch file ej. `Ctrl+C`, el contenedor se debe de borrar automáticamente, de lo contrario se puede eliminar manualmente desde el dashboard o usando el comando `docker container rm [container_id]`.
  * **Nota:** La ejecución del contenedor se realiza en modo interactivo `--interactive , -i` `--tty , -t` 
    * Cambiar el tamaño de la ventana de comandos puede detener el servidor Apache al recibir una señal [SIGWINCH](https://stackoverflow.com/questions/48086606/docker-container-exits-when-using-it-option).
-    Ejemplo de error:
-	```
-	[mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
-	```
-	La implementación de la ejecución del contenedor en segundo plano puede ser útil para este caso `--detach , -d` sin embargo, por defecto se usa el modo interactivo para depurar.
+   * Ejemplo de error:
+   ```
+   [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+   ```
+   La implementación de la ejecución del contenedor en segundo plano puede ser útil para este caso `--detach , -d` sin embargo, por defecto se usa el modo interactivo para depurar.
 
 ### Como acceder a la terminal bin/bash del contenedor
 * Correr `run_container_bash.bat`
@@ -86,10 +86,9 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
 
 ### Como correr el servidor
 * Correr `run_chat_server.bat`
-  ** Ejemplo de ejecución del servidor
+  * Ejemplo de ejecución del servidor
   ![run_chat_server](https://github.com/jbvazquez/php-simple-websocket-chat/blob/docker-container/docker-container/img/run_chat_server_snip.png?raw=true)
   
-
 ### Como acceder al cliente
 * Desde el navegador acceder a la URL (http://localhost/php-simple-websocket-chat/cliente/)
 
