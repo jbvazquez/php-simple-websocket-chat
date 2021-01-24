@@ -38,9 +38,29 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
 ## [Docker](https://docs.docker.com/get-started/overview/)
 ### Windows
 * Instalación oficial [Install Docker Desktop on Windows](https://docs.docker.com/docker-for-windows/install/)
-* Docker Version : Docker Engine - Community - Version: 20.10.2
+* Docker Version :
+    ```
+    Server: Docker Engine - Community
+    Engine:
+    Version:          20.10.2
+    API version:      1.41 (minimum version 1.12)
+    Go version:       go1.13.15
+    Git commit:       8891c58
+    Built:            Mon Dec 28 16:15:28 2020
+    OS/Arch:          linux/amd64
+    Experimental:     false
+    containerd:
+    Version:          1.4.3
+    GitCommit:        269548fa27e0089a8b8278fc4fc781d7f65a939b
+    runc:
+    Version:          1.0.0-rc92
+    GitCommit:        ff819c7e9184c13b7c2607fe6c30ae19403a7aff
+    docker-init:
+    Version:          0.19.0
+    GitCommit:        de40ad0
+    ```
 * [PHP Docker Official Images](https://hub.docker.com/_/php)
- * Tag: 7.4-apache(https://github.com/docker-library/php/blob/74175669f4162058e1fb0d2b0cf342e35f9c0804/7.4/buster/apache/Dockerfile) 
+ * [Tag: 7.4-apache](https://github.com/docker-library/php/blob/74175669f4162058e1fb0d2b0cf342e35f9c0804/7.4/buster/apache/Dockerfile) 
  * Esta imagen contiene Apache httpd de Debian junto con PHP
  * PHP Version 7.4.14
  * Apache 2.0 Handler
@@ -66,7 +86,7 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
  * (http://localhost/)
  * (http://localhost/php-simple-websocket-chat/cliente/)
 
-### Work in progress
+### Work in Progress
 **Nota:** Implementación aun en desarrollo.
 * Error actual al ejecutar `php php-simple-websocket-chat/servidor/chat.php`
 ```
