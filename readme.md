@@ -1,6 +1,6 @@
 # PHP Simple WebSocket Chat
 
-![Pantalla](cliente/img/pantallaso.jpg)
+![Pantalla](https://github.com/jbvazquez/php-simple-websocket-chat/blob/master/cliente/img/pantallaso.jpg?raw=true)
 
 Usa la librería https://github.com/ghedipunk/PHP-Websockets
 
