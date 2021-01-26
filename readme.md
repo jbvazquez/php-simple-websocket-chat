@@ -85,24 +85,33 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
 * Correr `run_container.bat` o ejecutar el comando:
 	```
 	docker run --rm -it ^
-        -v %CD%/src/index.php:/var/www/html/index.php ^
+		-v %CD%/src/index.php:/var/www/html/index.php ^
 		-v %CD%/../cliente/:/var/www/html/cliente/ ^
-        -v %CD%/../servidor/:/var/www/html/servidor/ ^
-        --expose 80 ^
-        --expose 5001 ^
-        -p 80:80 -p 5001:5001 ^
-        --name php_container ^
-        php-simple-websocket-chat
+		-v %CD%/../servidor/:/var/www/html/servidor/ ^
+		--expose 80 ^
+		--expose 5001 ^
+		-p 80:80 -p 5001:5001 ^
+		--name php_container ^
+		php-simple-websocket-chat
 	```
- * Al terminar la ejecución del batch file ej. `Ctrl+C`, el contenedor se debe de borrar automáticamente, de lo contrario se puede eliminar manualmente desde el dashboard o usando el comando `docker container rm [container_id]`.
- * **Nota:** La ejecución del contenedor se realiza en modo interactivo `--interactive , -i` `--tty , -t` 
-   * Cambiar el tamaño de la ventana de comandos puede detener el servidor Apache al recibir una señal [SIGWINCH](https://stackoverflow.com/questions/48086606/docker-container-exits-when-using-it-option).
-   * Ejemplo de error:
-   ```
-   [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
-   ```
-   La implementación de la ejecución del contenedor en segundo plano puede ser útil para este caso `--detach , -d` sin embargo, por defecto se usa el modo interactivo para depurar.
-
+	* Al terminar la ejecución del batch file ej. `Ctrl+C`, el contenedor se debe de borrar automáticamente, de lo contrario se puede eliminar manualmente desde el dashboard o usando el comando `docker container rm [container_id]`.
+	* **Nota:** La ejecución del contenedor se realiza en modo interactivo `--interactive , -i` `--tty , -t` 
+	* Cambiar el tamaño de la ventana de comandos puede detener el servidor Apache al recibir una señal [SIGWINCH](https://stackoverflow.com/questions/48086606/docker-container-exits-when-using-it-option).
+		* Ejemplo de error:
+		```
+		[mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+		```
+		La implementación de la ejecución del contenedor en segundo plano puede ser útil para este caso `--detach , -d` sin embargo, por defecto se usa el modo interactivo para depurar.
+* Ejemplo de ejecución exitosa:
+	```
+	Server started
+	Listening on: 172.17.0.2:5001
+	Master socket: Resource id #6
+	AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+	AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+	[Tue Jan 26 19:44:49.788786 2021] [mpm_prefork:notice] [pid 12] AH00163: Apache/2.4.38 (Debian) PHP/7.4.14 configured -- resuming normal operations
+	[Tue Jan 26 19:44:49.788862 2021] [core:notice] [pid 12] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+	```
 ### Como acceder a la terminal bin/bash del contenedor
 * Correr `exec_container_bash.bat` o ejecuta el comando `docker container exec -it php_container /bin/bash`
   * [docker exec](https://docs.docker.com/engine/reference/commandline/exec/)
