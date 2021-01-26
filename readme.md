@@ -82,6 +82,7 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
 
 ### Como correr el contenedor 
 * Cambiar el working directory a `cd docker-container`
+* **Nota:** La ejecución del contenedor se realiza en modo interactivo `--interactive , -i` `--tty , -t`.
 * Correr `run_container.bat` o ejecutar el comando:
 	```
 	docker run --rm -it ^
@@ -95,7 +96,6 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
 		php-simple-websocket-chat
 	```
 	* Al terminar la ejecución del batch file ej. `Ctrl+C`, el contenedor se debe de borrar automáticamente, de lo contrario se puede eliminar manualmente desde el dashboard o usando el comando `docker container rm [container_id]`.
-	* **Nota:** La ejecución del contenedor se realiza en modo interactivo `--interactive , -i` `--tty , -t` 
 	* Cambiar el tamaño de la ventana de comandos puede detener el servidor Apache al recibir una señal [SIGWINCH](https://stackoverflow.com/questions/48086606/docker-container-exits-when-using-it-option).
 		* Ejemplo de error:
 		```
