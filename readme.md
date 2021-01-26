@@ -67,10 +67,10 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
 
 ### Creación de imagen PHP personalizada
 * Cambiar el working directory a la raíz del proyecto `cd php-simple-websocket-chat`
-* Correr `build_image.bat` o ejecutar el comando run_chat_serverdocker build -t php-simple-websocket-chat .`
-  * El batch file construye la Docker image leyendo las instrucciones del `Dockerfile`, en éste documento de texto (sin extensión) se ejecutan los comandos de instalación para las extensiones necesarias, la especificación para que el contenedor escuche los puertos a usar `80` y `5001`, así como la declaración de los directorios a montar, copia y cambio de permisos de los scripts, así como la ejecución del (wrapper)[https://docs.docker.com/config/containers/multi-service_container/] usado para correr varios servicios al inicio del contenedor.
-  * **Nota**:  La implementación del wrapper fue necesaria debido a que `apachectl -D FOREGROUND` se ejecuta en primer plano. En otras palabras, bloquea la ejecución del script del servidor hasta que `apachectl` termina de ejecutarse.
-  De otra manera puede ser ejecutando el contenedor que inicia por defecto `apachectl -D FOREGROUND` y en otra sesión correr el servidor manualmente.
+* Correr `build_image.bat` o ejecutar el comando `run_chat_serverdocker build -t php-simple-websocket-chat .`
+  * El batch file construye la Docker image leyendo las instrucciones del `Dockerfile`, en éste documento de texto (sin extensión) se ejecutan los comandos de instalación para las extensiones necesarias, la especificación para que el contenedor escuche los puertos a usar `80` y `5001`, así como la declaración de los directorios a montar, copia y cambio de permisos de los scripts, así como la ejecución del [wrapper](https://docs.docker.com/config/containers/multi-service_container/) usado para correr varios servicios al inicio del contenedor.
+  * **Nota**:  La implementación del [wrapper](https://docs.docker.com/config/containers/multi-service_container/) fue necesaria debido a que `apachectl -D FOREGROUND` se ejecuta en primer plano. En otras palabras, bloquea la ejecución del script del servidor hasta que `apachectl` termina de ejecutarse.
+  De otra manera puede ser, ejecutando el contenedor que inicia por defecto `apachectl -D FOREGROUND` y en otra sesión correr el servidor manualmente.
 	#### Como correr el servidor manualmente
 	* Correr `run_chat_server.bat` o ejecutar el comando `docker container exec -it php_container /srv/run_chat_server.sh`
 	* Ejemplo de ejecución del servidor:
