@@ -66,11 +66,34 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
  * Apache 2.0 Handler
 
 ### Creación de imagen PHP personalizada
-* Correr `build_image.bat`
- * El batch file realiza el pull de la imagen de PHP desde el Docker Hub, instala las extensiones necesarias y la publicación de los puertos usados.
+* Cambiar el working directory a la raíz del proyecto `cd php-simple-websocket-chat`
+* Correr `build_image.bat` o ejecutar el comando run_chat_serverdocker build -t php-simple-websocket-chat .`
+  * El batch file construye la Docker image leyendo las instrucciones del `Dockerfile`, en éste documento de texto (sin extensión) se ejecutan los comandos de instalación para las extensiones necesarias, la especificación para que el contenedor escuche los puertos a usar `80` y `5001`, así como la declaración de los directorios a montar, copia y cambio de permisos de los scripts, así como la ejecución del (wrapper)[https://docs.docker.com/config/containers/multi-service_container/] usado para correr varios servicios al inicio del contenedor.
+  * **Nota**:  La implementación del wrapper fue necesaria debido a que `apachectl -D FOREGROUND` se ejecuta en primer plano. En otras palabras, bloquea la ejecución del script del servidor hasta que `apachectl` termina de ejecutarse.
+  De otra manera puede ser ejecutando el contenedor que inicia por defecto `apachectl -D FOREGROUND` y en otra sesión correr el servidor manualmente.
+	#### Como correr el servidor manualmente
+	* Correr `run_chat_server.bat` o ejecutar el comando `docker container exec -it php_container /srv/run_chat_server.sh`
+	* Ejemplo de ejecución del servidor:
+	```
+		Server started
+		Listening on: 172.17.0.2:5001
+		Master socket: Resource id #6
+	```
 
 ### Como correr el contenedor 
-* Correr `run_container.bat`
+* Cambiar el working directory a `cd docker-container`
+* Correr `run_container.bat` o ejecutar el comando:
+	```
+	docker run --rm -it ^
+        -v %CD%/src/index.php:/var/www/html/index.php ^
+		-v %CD%/../cliente/:/var/www/html/cliente/ ^
+        -v %CD%/../servidor/:/var/www/html/servidor/ ^
+        --expose 80 ^
+        --expose 5001 ^
+        -p 80:80 -p 5001:5001 ^
+        --name php_container ^
+        php-simple-websocket-chat
+	```
  * Al terminar la ejecución del batch file ej. `Ctrl+C`, el contenedor se debe de borrar automáticamente, de lo contrario se puede eliminar manualmente desde el dashboard o usando el comando `docker container rm [container_id]`.
  * **Nota:** La ejecución del contenedor se realiza en modo interactivo `--interactive , -i` `--tty , -t` 
    * Cambiar el tamaño de la ventana de comandos puede detener el servidor Apache al recibir una señal [SIGWINCH](https://stackoverflow.com/questions/48086606/docker-container-exits-when-using-it-option).
@@ -81,24 +104,30 @@ Usa la librería https://github.com/ghedipunk/PHP-Websockets
    La implementación de la ejecución del contenedor en segundo plano puede ser útil para este caso `--detach , -d` sin embargo, por defecto se usa el modo interactivo para depurar.
 
 ### Como acceder a la terminal bin/bash del contenedor
-* Correr `run_container_bash.bat`
+* Correr `exec_container_bash.bat` o ejecuta el comando `docker container exec -it php_container /bin/bash`
   * [docker exec](https://docs.docker.com/engine/reference/commandline/exec/)
-
-### Como correr el servidor
-* Correr `run_chat_server.bat`
-  * Ejemplo de ejecución del servidor:
-  ```
-	Server started
-	Listening on: 172.17.0.2:5001
-	Master socket: Resource id #6
-  ```
   
 ### Como acceder al cliente
-* Desde el navegador acceder a la URL http://localhost/php-simple-websocket-chat/cliente/
+* Desde el navegador acceder a la URL http://localhost/cliente/
 
 ### Obtener información de PHP
 * Desde el navegador acceder a URL http://localhost/
 
 ### Linux
-* Próximamente...
+
+### Creación de imagen PHP personalizada
+* Cambiar el working directory a la raíz del proyecto `cd php-simple-websocket-chat`
+	* Ejecutar el comando:
+		```
+		docker build -t php-simple-websocket-chat .
+		docker run --rm -it \
+			-v /home/downloads/php-simple-websocket-chat/:/var/www/html/ \
+			--expose 80 \
+			--expose 5001 \
+			-p 80:80 -p 5001:5001 \
+			--name php_container \
+			php-simple-websocket-chat
+		```
+### Como correr el contenedor 
+* Ejecutar el comando: `docker container exec -it php_container /bin/bash`
 
